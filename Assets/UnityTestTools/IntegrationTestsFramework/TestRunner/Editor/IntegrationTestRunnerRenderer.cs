@@ -163,7 +163,8 @@ namespace UnityTest
 			{
 				var selectedTest = selectedTests.Single ();
 				TestManager.SelectInHierarchy(selectedTest.go, hideTestsInHierarchy);
-				EditorApplication.RepaintHierarchyWindow ();
+				//EditorApplication.RepaintHierarchyWindow ();
+				EditorApplication.RepaintSceneHierarchyWindow();
 			}
 			Selection.objects = selectedTests.Select(result => result.go).ToArray();
 			forceRepaint = true;
@@ -482,7 +483,8 @@ namespace UnityTest
 				TestManager.ShowOrHideTestInHierarchy(hideTestsInHierarchy);
 				if (selectedTests.Count == 1)
 					TestManager.SelectInHierarchy(selectedTests.Single().go, hideTestsInHierarchy);
-				EditorApplication.RepaintHierarchyWindow();
+				//EditorApplication.RepaintHierarchyWindow();
+				EditorApplication.RepaintSceneHierarchyWindow();
 			}
 			EditorGUI.BeginChangeCheck();
 			showTestRunnerObjectOnScene = !EditorGUILayout.Toggle(guiHideTestRunner,
