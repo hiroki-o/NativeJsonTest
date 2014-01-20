@@ -12,20 +12,37 @@ SceneSettings:
     backfaceThreshold: 100
 --- !u!104 &2
 RenderSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
   m_Fog: 0
   m_FogColor: {r: .5, g: .5, b: .5, a: 1}
   m_FogMode: 3
   m_FogDensity: .00999999978
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientLight: {r: .200000003, g: .200000003, b: .200000003, a: 1}
+  m_AmbientSkyColor: {r: .200000003, g: .200000003, b: .200000003, a: 1}
+  m_AmbientEquatorColor: {r: .200000003, g: .200000003, b: .200000003, a: 1}
+  m_AmbientGroundColor: {r: .200000003, g: .200000003, b: .200000003, a: 1}
+  m_AmbientSkyboxExposure: -431602080
+  m_AmbientProbe:
+    sh[0]: {x: 0, y: 0, z: 0}
+    sh[1]: {x: 0, y: 0, z: 0}
+    sh[2]: {x: 0, y: 0, z: 0}
+    sh[3]: {x: 0, y: 0, z: 0}
+    sh[4]: {x: 0, y: 0, z: 0}
+    sh[5]: {x: 0, y: 0, z: 0}
+    sh[6]: {x: 0, y: 0, z: 0}
+    sh[7]: {x: 0, y: 0, z: 0}
+    sh[8]: {x: 0, y: 0, z: 0}
+  m_AmbientSkyboxLight: {fileID: 0}
+  m_AmbientMode: 3
+  m_CreateAmbientLight: 0
   m_SkyboxMaterial: {fileID: 0}
   m_HaloStrength: .5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
   m_HaloTexture: {fileID: 0}
-  m_SpotCookie: {fileID: 0}
-  m_ObjectHideFlags: 0
+  m_SpotCookie: {fileID: 10001, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!127 &3
 LevelGameManager:
   m_ObjectHideFlags: 0
@@ -141,6 +158,7 @@ Camera:
     m_Bits: 4294967295
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
   m_HDR: 0
   m_OcclusionCulling: 1
 --- !u!4 &1577283392
@@ -154,3 +172,52 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+  m_RootMapOrder: 0
+--- !u!1 &1582999208
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1582999210}
+  - 114: {fileID: 1582999209}
+  m_Layer: 0
+  m_Name: JsonExample
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1582999209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1582999208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b88169553fd34b22808836882c4ee8e, type: 3}
+  m_Name: 
+  m_ScriptingClassIdentifier: Assembly-CSharp::JsonExample
+  testInput1: {fileID: 4900000, guid: f6166f94be5234322a9c52f5d08ef61f, type: 3}
+  value1: Hello Json.
+  valueKey1: The quick brown fox jumps over the lazy dog
+  valueKey2: 456789
+  value2: 123.45
+  value3:
+  - A
+  - B
+  - C
+--- !u!4 &1582999210
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1582999208}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootMapOrder: 0

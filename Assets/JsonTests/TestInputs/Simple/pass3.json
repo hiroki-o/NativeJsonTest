@@ -1,0 +1,9 @@
+{
+    "name1": "Hello Json.",
+    "object1": {
+	    "key1": "The quick brown fox jumps over the lazy dog",
+	    "key2": 456789
+	},
+	"name2": 123.45,
+    "name3": [ "A", "B", "C" ]
+}
