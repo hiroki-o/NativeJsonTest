@@ -12,7 +12,7 @@ public class JsonExample : MonoBehaviour
 
 	[SerializeField]
 	public TextAsset testInput1;
-
+	
 	public string value1 = "Hello Json.";
 	public string valueKey1 = "The quick brown fox jumps over the lazy dog";
 	public int valueKey2 = 456789;
@@ -22,10 +22,16 @@ public class JsonExample : MonoBehaviour
 	void Start() {
 		Debug.Log ("Parse");
 		Parse();
+		Debug.Log ("ParseAndToString");
+		ParseAndToString();
+		Debug.Log ("ParseModifyAndToString");
+		ParseModifyAndToString();
 		Debug.Log ("GetString");
 		GetString();
 		Debug.Log ("IsNotOtherThanString");
 		IsNotOtherThanString();
+		Debug.Log ("BuildFromCode");
+		BuildFromCode();
 	}
 
 	public void Parse ()
@@ -33,6 +39,54 @@ public class JsonExample : MonoBehaviour
 		Json json = new Json();
 		json.ParseDocument(testInput1.text);
 	}
+
+	public void ParseAndToString ()
+	{
+		Json json = new Json();
+		json.ParseDocument(testInput1.text);
+
+		Debug.Log (json.ToString ());
+	}
+
+	public void ParseModifyAndToString ()
+	{
+		Json json = new Json();
+		json.ParseDocument(testInput1.text);
+
+		json.AddMember("category", "INIT");
+		json.AddMember("data_value","foobar");
+
+		json.GetValue("name1").SetString ("adsjlfajsdlfajsdflajs dsjfjdfajd.");
+		json.GetValue ("name2").SetDouble(345.678);
+
+		Debug.Log (json.ToString ());
+	}
+
+	public void BuildFromCode ()
+	{
+		Json json = new Json();
+
+		json.AddMember("member1", "INIT");
+		json.AddMember("member2","foobar");
+		json.AddMember("member3");
+
+		JsonValue jv = json.GetValue ("member3");
+		jv.SetArray();
+		jv.array.PushBack(1);
+		jv.array.PushBack(2);
+		jv.array.PushBack(3);
+		jv.array.PushBack(4);
+
+		Json jsonObj = new Json();
+		jsonObj.AddMember("intv", 123);
+		jsonObj.AddMember("srtv", "hoge");
+		jsonObj.AddMember("doublev", 123.456);
+
+		json.AddMember("member4", jsonObj);
+
+		Debug.Log (json.ToString ());
+	}
+
 
 	public void GetString ()
 	{
