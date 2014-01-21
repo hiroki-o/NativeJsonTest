@@ -1,0 +1,36 @@
+
+{
+    "Assets/Done/DonePrefabs/char_cyberKid_low.prefab" : [
+        "Assets/Animations/Humanoid/humanoid_walkForward_faceForward.fbx",
+        "Assets/Animations/Humanoid/humanoid_runForward_faceForward.fbx",
+        "Assets/Animations/Humanoid/humanoid_idle.fbx",
+        "Assets/Textures/char_cyberKid_dff.tif",
+        "Assets/Textures/char_cyberKid_nrm.tif",
+        "Assets/Textures/cube_stealth01_sharp.cubemap",
+        "Assets/Textures/cube_stealth01_soft.cubemap"
+    ],
+    "Assets/Animations/Humanoid/humanoid_walkForward_faceForward.fbx" : [
+    ],
+    "Assets/Animations/Humanoid/humanoid_runForward_faceForward.fbx"  : [
+    ],
+    "Assets/Animations/Humanoid/humanoid_idle.fbx"                    : [
+    ],
+    "Assets/Textures/char_cyberKid_dff.tif"                           : [
+    ],
+    "Assets/Textures/char_cyberKid_nrm.tif"                           : [
+    ],
+    "Assets/Textures/cube_stealth01_sharp.cubemap"                    : [
+    ],
+    "Assets/Textures/cube_stealth01_soft.cubemap"                     : [
+    ],
+    "Assets/Done/DonePrefabs/char_robotGuard.prefab"                  : [
+        "Assets/Textures/char_robotGuard_helmet_dff.tif",
+        "Assets/Textures/cube_stealth01_soft.cubemap",
+        "Assets/Textures/cube_stealth01_sharp.cubemap",
+        "Assets/Animations/Humanoid/humanoid_walkForward_faceForward.fbx",
+        "Assets/Animations/Humanoid/humanoid_runForward_faceForward.fbx",
+        "Assets/Animations/Humanoid/humanoid_idle.fbx"
+    ],
+    "Assets/Textures/char_robotGuard_helmet_dff.tif"                  : [
+    ]
+}

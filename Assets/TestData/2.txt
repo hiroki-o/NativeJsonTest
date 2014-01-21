@@ -1,0 +1,4 @@
+"{
+  ""Binary"": ""VGhpcyBpcyBzb21lIHRlc3QgZGF0YSEhIQ=="",
+  ""NullBinary"": null
+}"

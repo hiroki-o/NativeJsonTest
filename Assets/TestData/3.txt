@@ -1,0 +1,4 @@
+{
+  ""Binary"": [0, 1, 2, 3],
+  ""NullBinary"": null
+}"

@@ -1,0 +1,9 @@
+"{
+  ""Explicit"": true,
+  ""Decimal"": 99.9,
+  ""Int"": 1,
+  ""ChildObject"": {
+    ""Text"": null,
+    ""Integer"": 0
+  }
+}"

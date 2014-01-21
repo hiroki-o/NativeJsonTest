@@ -2,6 +2,7 @@
 using System;
 using System.Threading;
 using NUnit.Framework;
+using System.IO;
 
 namespace NativeJsonTest
 {
@@ -11,7 +12,7 @@ namespace NativeJsonTest
 //		[Datapoint]
 //		public double zero = 0;
 		[SerializeField]
-		public TextAsset testInput1;
+		public string testInput1 = "1.txt";
 
 		[Datapoint]
 		public string value1 = "Hello Json.";
@@ -24,53 +25,142 @@ namespace NativeJsonTest
 		[Datapoint]
 		public string[] value3 = {"A", "B", "C"};
 
+        string jsonData = @"{
+  ""$id"": ""1"",
+  ""FolderId"": ""a4e8ba80-eb24-4591-bb1c-62d3ad83701e"",
+  ""Name"": ""Root folder"",
+  ""Description"": ""Description!"",
+  ""CreatedDate"": ""2000-12-10T10:50:00Z"",
+  ""Files"": [],
+  ""ChildFolders"": [
+    {
+      ""$id"": ""2"",
+      ""FolderId"": ""484936e2-7cbb-4592-93ff-b2103e5705e4"",
+      ""Name"": ""Child folder"",
+      ""Description"": ""Description!"",
+      ""CreatedDate"": ""2001-11-20T10:50:00Z"",
+      ""Files"": [
+        {
+          ""$id"": ""3"",
+          ""FileId"": ""cc76d734-49f1-4616-bb38-41514228ac6c"",
+          ""Name"": ""File 1"",
+          ""Description"": ""Description!"",
+          ""CreatedDate"": ""2002-10-30T10:50:00Z"",
+          ""Folder"": {
+            ""$ref"": ""2""
+          },
+          ""EntityKey"": {
+            ""$id"": ""4"",
+            ""EntitySetName"": ""File"",
+            ""EntityContainerName"": ""DataServicesTestDatabaseEntities"",
+            ""EntityKeyValues"": [
+              {
+                ""Key"": ""FileId"",
+                ""Type"": ""System.Guid"",
+                ""Value"": ""cc76d734-49f1-4616-bb38-41514228ac6c""
+              }
+            ]
+          }
+        }
+      ],
+      ""ChildFolders"": [],
+      ""ParentFolder"": {
+        ""$ref"": ""1""
+      },
+      ""EntityKey"": {
+        ""$id"": ""5"",
+        ""EntitySetName"": ""Folder"",
+        ""EntityContainerName"": ""DataServicesTestDatabaseEntities"",
+        ""EntityKeyValues"": [
+          {
+            ""Key"": ""FolderId"",
+            ""Type"": ""System.Guid"",
+            ""Value"": ""484936e2-7cbb-4592-93ff-b2103e5705e4""
+          }
+        ]
+      }
+    }
+  ],
+  ""ParentFolder"": null,
+  ""EntityKey"": {
+    ""$id"": ""6"",
+    ""EntitySetName"": ""Folder"",
+    ""EntityContainerName"": ""DataServicesTestDatabaseEntities"",
+    ""EntityKeyValues"": [
+      {
+        ""Key"": ""FolderId"",
+        ""Type"": ""System.Guid"",
+        ""Value"": ""a4e8ba80-eb24-4591-bb1c-62d3ad83701e""
+      }
+    ]
+  }
+}";
+
+
+        public string readFile()
+        {
+            TextReader tr = File.OpenText(@"C:\Users\zhonglei\Documents\GitHub\NativeJsonTest\Assets\TestData\1.txt");
+            var temp = tr.ReadToEnd();
+            tr.Close();
+            return temp;
+
+        }
+
+
 		[Test]
-//		[Ignore ("Ignored test")]
-//		[ExpectedException (typeof (ArgumentException), ExpectedMessage = "expected message")]
 		public void Parse ()
 		{
 			Json json = new Json();
-			json.ParseDocument(testInput1.text);
+            json.ParseDocument(jsonData);
+            Assert.That(json.GetValue("FolderId").isString);
 		}
 
-		[Test]
-		public void GetString ()
-		{
-			Json json = new Json();
-			json.ParseDocument(testInput1.text);
 
-			// test direct query
-			Assert.That ( json.IsString ("name1") );
-			Assert.That ( json.GetString ("name1").Equals(value1) );
+        [Test]
+        public void ParseEmptyString()
+        {
+            Json json = new Json();
+            json.ParseDocument("");
+        }
 
-			JsonValue jv = json.GetValue("name1");
-			Assert.That ( jv.isString );
-			Assert.That ( jv.stringValue.Equals(value1) );
-		}
+        [Test]
+        public void ParseEmptyObject()
+        {
+            Json json = new Json();
+            json.ParseDocument("{}");
+        }
 
-		[Test]
-		public void IsNotOtherThanString ()
-		{
-			Json json = new Json();
-			json.ParseDocument(testInput1.text);
-			
-			// test direct query
-			Assert.That ( !json.IsArray ("name1") );
-			Assert.That ( !json.IsBool ("name1") );
-			Assert.That ( !json.IsDouble ("name1") );
-			Assert.That ( !json.IsInt ("name1") );
-			Assert.That ( !json.IsNull ("name1") );
-			Assert.That ( !json.IsNumber ("name1") );
-			Assert.That ( !json.IsObject ("name1") );
+        [Test]
+        public void ParseEmptyArray()
+        {
+            Json json = new Json();
+            json.ParseDocument("{[]}");
+        }
+                [Test]
+        public void ParseObjectEmptyArray()
+        {
+            Json json = new Json();
+            json.ParseDocument("{\"Assets\" : []}");
+        }
 
-			JsonValue jv = json.GetValue("name1");
-			Assert.That ( !jv.isArray );
-			Assert.That ( !jv.isBool );
-			Assert.That ( !jv.isDouble );
-			Assert.That ( !jv.isInt );
-			Assert.That ( !jv.isNull );
-			Assert.That ( !jv.isNumber );
-			Assert.That ( !jv.isObject );
-		}
+ 
+        [Test]
+        public void ParseTwoObject()
+        {
+            Json json = new Json();
+            json.ParseDocument(jsonData);
+            json.ParseDocument("{}");
+        }
+
+        [Test]
+        //[Ignore ("Ignored test")]
+        //[ExpectedException (typeof (ArgumentException), ExpectedMessage = "expected message")]
+        public void ParseErrorString()
+        {
+            Json json = new Json();
+            json.ParseDocument("{qqs");
+        }
+
+
 	}
 }
