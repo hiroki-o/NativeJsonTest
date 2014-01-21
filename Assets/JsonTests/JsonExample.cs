@@ -37,29 +37,31 @@ public class JsonExample : MonoBehaviour
 	public void Parse ()
 	{
 		Json json = new Json();
-		json.ParseDocument(testInput1.text);
+		json.ParseDocument(testInput1);
 	}
 
 	public void ParseAndToString ()
 	{
 		Json json = new Json();
-		json.ParseDocument(testInput1.text);
+		json.ParseDocument(testInput1);
 
-		Debug.Log (json.ToString ());
+		Debug.Log (json.ToPrettyString ());
 	}
 
 	public void ParseModifyAndToString ()
 	{
 		Json json = new Json();
-		json.ParseDocument(testInput1.text);
+		json.ParseDocument(testInput1);
 
 		json.AddMember("category", "INIT");
 		json.AddMember("data_value","foobar");
 
-		json.GetValue("name1").SetString ("adsjlfajsdlfajsdflajs dsjfjdfajd.");
-		json.GetValue ("name2").SetDouble(345.678);
+		JsonValue v = json["name1"];
 
-		Debug.Log (json.ToString ());
+		json["name1"].SetString ("adsjlfajsdlfajsdflajs dsjfjdfajd.");
+		json["name2"].SetDouble(345.678);
+
+		Debug.Log (json.ToPrettyString ());
 	}
 
 	public void BuildFromCode ()
@@ -84,7 +86,7 @@ public class JsonExample : MonoBehaviour
 
 		json.AddMember("member4", jsonObj);
 
-		Debug.Log (json.ToString ());
+		Debug.Log (json.ToPrettyString ());
 	}
 
 
@@ -105,7 +107,7 @@ public class JsonExample : MonoBehaviour
 	public void IsNotOtherThanString ()
 	{
 		Json json = new Json();
-		json.ParseDocument(testInput1.text);
+		json.ParseDocument(testInput1);
 		
 		// test direct query
 		Assert.That ( !json.IsArray ("name1") );
