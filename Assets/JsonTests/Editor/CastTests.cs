@@ -57,5 +57,47 @@ namespace NativeJsonTest
 			Assert.Catch ( typeof(InvalidCastException), delegate { int v = (int)json["member1"]; } );
 		}
 
+		[Test]
+		public void CastToJsonValueFromBool ()
+		{
+			Json json = new Json();
+			
+			json["member3"] = true;
+
+			Assert.AreEqual(true, 			(bool)json["member3"]);
+		}
+
+		[Test]
+		public void CastToJsonValueFromPrimitives ()
+		{
+			JsonValue v = 1;
+			JsonValue v2 = 1.23;
+			JsonValue v3 = true;
+			JsonValue v4 = "hello world";
+
+			Json json = new Json();
+
+			json["member1"] = 123;
+			json["member2"] = 456.789;
+			json["member3"] = true;
+			json["member4"] = false;
+			json["member5"] = "hello world again";
+
+			json["member6"] = v;
+			json["member7"] = v2;
+			json["member8"] = v3;
+			json["member9"] = v4;
+
+			Assert.AreEqual(123, 			(int)json["member1"]);
+			Assert.AreEqual(456.789, 		(double)json["member2"]);
+			Assert.AreEqual(true, 			(bool)json["member3"]);
+			Assert.AreEqual(false, 			(bool)json["member4"]);
+			Assert.AreEqual("hello world again", 	(string)json["member5"]);
+
+			Assert.AreEqual(1, 				(int)json["member6"]);
+			Assert.AreEqual(1.23, 			(double)json["member7"]);
+			Assert.AreEqual(true, 			(bool)json["member8"]);
+			Assert.AreEqual("hello world", 	(string)json["member9"]);
+		}
 	}
 }
