@@ -13,6 +13,9 @@ namespace NativeJsonTest
 		string input = @"{""myArrays"":[1,2,333,546,589,-3236,27,844,91,12220]}";
 
 		[Datapoint]
+		string input2 = @"{""myArrays"":""actually, this is not an array.""}";
+
+		[Datapoint]
 		int[] values = {1,2,333,546,589,-3236,27,844,91,12220};
 
 		[Test]
@@ -51,6 +54,20 @@ namespace NativeJsonTest
 			foreach(JsonValue item in v.array) {
 				Assert.That ( item.intValue == values[i++] );
 			}
+		}
+
+		[Test]
+		public void ArrayAccessToNotArray ()
+		{
+			Json json = new Json();
+			json.ParseDocument(input2);
+			
+			int i = 0;
+			JsonValue v = json["myArrays"];
+			
+			Assert.Catch (typeof(JsonValueException), delegate { i = v[1].intValue; } );
+			Assert.Catch (typeof(JsonValueException), delegate { i = v.array[1].intValue; } );
+
 		}
 	}
 }
