@@ -7,7 +7,7 @@ using System.IO;
 namespace NativeJsonTest
 {
 	[TestFixture]
-	public class ParserTests : MonoBehaviour
+	public class ParserTests
 	{
 //		[Datapoint]
 //		public double zero = 0;
@@ -95,18 +95,6 @@ namespace NativeJsonTest
     ]
   }
 }";
-
-
-        public string readFile()
-        {
-            TextReader tr = File.OpenText(@"C:\Users\zhonglei\Documents\GitHub\NativeJsonTest\Assets\TestData\1.txt");
-            var temp = tr.ReadToEnd();
-            tr.Close();
-            return temp;
-
-        }
-
-
 		[Test]
 		public void Parse ()
 		{
@@ -117,6 +105,7 @@ namespace NativeJsonTest
 
 
         [Test]
+		[ExpectedException(typeof(JsonParseException))]
         public void ParseEmptyString()
         {
             Json json = new Json();
@@ -131,7 +120,8 @@ namespace NativeJsonTest
         }
 
         [Test]
-        public void ParseEmptyArray()
+		[ExpectedException(typeof(JsonParseException))]
+		public void ParseEmptyArray()
         {
             Json json = new Json();
             json.ParseDocument("{[]}");
@@ -153,7 +143,8 @@ namespace NativeJsonTest
         }
 
         [Test]
-        //[Ignore ("Ignored test")]
+		[ExpectedException(typeof(JsonParseException))]
+		//[Ignore ("Ignored test")]
         //[ExpectedException (typeof (ArgumentException), ExpectedMessage = "expected message")]
         public void ParseErrorString()
         {
@@ -197,6 +188,7 @@ namespace NativeJsonTest
             Json json = new Json();
             json.ParseDocument(@"{""ParentFolder"": ""000100sssssssssssssssssssssssssssssssssssssssssssssssssssssssassssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss1312321423432!@#$$%^^&*())))))))))))))))))""}");
 
+			Assert.That ( json["ParentFolder"].stringValue == "000100sssssssssssssssssssssssssssssssssssssssssssssssssssssssassssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss1312321423432!@#$$%^^&*())))))))))))))))))" );
         }
 
         [Test]
@@ -204,8 +196,11 @@ namespace NativeJsonTest
         //[ExpectedException (typeof (ArgumentException), ExpectedMessage = "expected message")]
         public void ParseLongInt()
         {
+
             Json json = new Json();
             json.ParseDocument(@"{""ParentFolder"": -1111111111111111111111111111111111111}");
+
+
         }
 
         [Test]

@@ -20,10 +20,10 @@ RenderSettings:
   m_FogDensity: .00999999978
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: .200000003, g: .200000003, b: .200000003, a: 1}
-  m_AmbientEquatorColor: {r: .200000003, g: .200000003, b: .200000003, a: 1}
-  m_AmbientGroundColor: {r: .200000003, g: .200000003, b: .200000003, a: 1}
-  m_AmbientSkyboxExposure: -431602080
+  m_AmbientSkyColor: {r: .211999997, g: .226999998, b: .259000003, a: 1}
+  m_AmbientEquatorColor: {r: .114, g: .125, b: .133000001, a: 1}
+  m_AmbientGroundColor: {r: .0469999984, g: .0430000015, b: .0350000001, a: 1}
+  m_AmbientSkyboxExposure: .300000012
   m_AmbientProbe:
     sh[0]: {x: 0, y: 0, z: 0}
     sh[1]: {x: 0, y: 0, z: 0}
@@ -35,7 +35,7 @@ RenderSettings:
     sh[7]: {x: 0, y: 0, z: 0}
     sh[8]: {x: 0, y: 0, z: 0}
   m_AmbientSkyboxLight: {fileID: 0}
-  m_AmbientMode: 3
+  m_AmbientMode: 1
   m_CreateAmbientLight: 0
   m_SkyboxMaterial: {fileID: 0}
   m_HaloStrength: .5
@@ -91,145 +91,114 @@ NavMeshSettings:
     widthInaccuracy: 16.666666
     heightInaccuracy: 10
   m_NavMesh: {fileID: 0}
---- !u!1 &1577283387
+--- !u!1 &180141740
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 1577283392}
-  - 20: {fileID: 1577283391}
-  - 92: {fileID: 1577283390}
-  - 124: {fileID: 1577283389}
-  - 81: {fileID: 1577283388}
+  - 4: {fileID: 180141744}
+  - 114: {fileID: 180141743}
+  - 114: {fileID: 180141742}
+  - 114: {fileID: 180141741}
   m_Layer: 0
-  m_Name: Main Camera
-  m_TagString: MainCamera
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!81 &1577283388
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1577283387}
-  m_Enabled: 1
---- !u!124 &1577283389
-Behaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1577283387}
-  m_Enabled: 1
---- !u!92 &1577283390
-Behaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1577283387}
-  m_Enabled: 1
---- !u!20 &1577283391
-Camera:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1577283387}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: .192156866, g: .301960796, b: .474509805, a: .0196078438}
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: .300000012
-  far clip plane: 1000
-  field of view: 60
-  orthographic: 0
-  orthographic size: 5
-  m_Depth: -1
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
-  m_HDR: 0
-  m_OcclusionCulling: 1
---- !u!4 &1577283392
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1577283387}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootMapOrder: 0
---- !u!1 &1582999208
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1582999210}
-  - 114: {fileID: 1582999209}
-  m_Layer: 0
-  m_Name: JsonExample
+  m_Name: WWW
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1582999209
+--- !u!114 &180141741
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1582999208}
+  m_GameObject: {fileID: 180141740}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b88169553fd34b22808836882c4ee8e, type: 3}
+  m_Script: {fileID: 11500000, guid: f81d2fdea8b984714b87a832e985d4ea, type: 3}
   m_Name: 
-  m_ScriptingClassIdentifier: Assembly-CSharp::JsonExample
-  testInput1: {fileID: 4900000, guid: f6166f94be5234322a9c52f5d08ef61f, type: 3}
-  value1: Hello Json.
-  valueKey1: The quick brown fox jumps over the lazy dog
-  valueKey2: 456789
-  value2: 123.45
-  value3:
-  - A
-  - B
-  - C
---- !u!4 &1582999210
+  m_ScriptingClassIdentifier: Assembly-CSharp::WWWTests
+  serverAddr: http://localhost:8888
+  getIpAddrTestSuccess: 0
+--- !u!114 &180141742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 180141740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bafa54482a87ac4cbd7ff1bfd1ac93a, type: 3}
+  m_Name: 
+  m_ScriptingClassIdentifier: Assembly-CSharp:UnityTest:AssertionComponent
+  checkAfterTime: 3
+  repeatCheckTime: 0
+  repeatEveryTime: 1
+  checkAfterFrames: 1
+  repeatCheckFrame: 1
+  repeatEveryFrame: 1
+  hasFailed: 0
+  checkMethods: 1
+  m_ActionBase: {fileID: 902780879}
+  checksPerformed: 0
+--- !u!114 &180141743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 180141740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1dba0b27b0864740a8720e920aa88c0, type: 3}
+  m_Name: 
+  m_ScriptingClassIdentifier: Assembly-CSharp:UnityTest:TestComponent
+  timeout: 3
+  ignored: 0
+  succeedAfterAllAssertionsAreExecuted: 0
+  expectException: 0
+  expectedExceptionList: 
+  succeedWhenExceptionIsThrown: 0
+  includedPlatforms: -1
+--- !u!4 &180141744
 Transform:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1582999208}
+  m_GameObject: {fileID: 180141740}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootMapOrder: 0
---- !u!1 &2106856359
+--- !u!114 &902780879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2586c8e41f35d2f4fadde53020bf4207, type: 3}
+  m_Name: 
+  m_ScriptingClassIdentifier: Assembly-CSharp:UnityTest:BoolComparer
+  go: {fileID: 180141740}
+  thisPropertyPath: WWWTests.getIpAddrTestSuccess
+  compareToType: 1
+  other: {fileID: 0}
+  otherPropertyPath: 
+  constantValueGeneric: 1
+--- !u!1 &1944229362
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 2106856361}
-  - 114: {fileID: 2106856360}
+  - 4: {fileID: 1944229364}
+  - 114: {fileID: 1944229363}
   m_Layer: 0
   m_Name: TestRunner
   m_TagString: Untagged
@@ -237,24 +206,24 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2106856360
+--- !u!114 &1944229363
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 8
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2106856359}
+  m_GameObject: {fileID: 1944229362}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5c3afc1c624179749bcdecf7b0224902, type: 3}
   m_Name: 
   m_ScriptingClassIdentifier: Assembly-CSharp:UnityTest:TestRunner
   testToRun: []
---- !u!4 &2106856361
+--- !u!4 &1944229364
 Transform:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2106856359}
+  m_GameObject: {fileID: 1944229362}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
