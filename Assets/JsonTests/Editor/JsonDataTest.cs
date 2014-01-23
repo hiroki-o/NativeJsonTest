@@ -43,7 +43,7 @@ namespace NativeJsonTest
 
             data = true;
             Assert.IsTrue (data.isBool, "A1");
-            Assert.AreEqual ("true", data.ToString (), "A3");
+            Assert.AreEqual (true.ToString(), data.ToString (), "A3");
 
             data = false;
             bool f = false;
@@ -59,12 +59,12 @@ namespace NativeJsonTest
             data = 3e6;
             Assert.IsTrue (data.isDouble, "A1");
             Assert.AreEqual (3e6, (double) data, "A2");
-            Assert.AreEqual ("3000000.0", data.ToString (), "A3");
+			Assert.AreEqual (((double)3000000.0).ToString(), data.ToString (), "A3");
 
             data = 3.14;
             Assert.IsTrue (data.isDouble, "A4");
             Assert.AreEqual (3.14, (double) data, "A5");
-            Assert.AreEqual("3.14", data.ToString(), "A6");
+            Assert.AreEqual(((double)3.14).ToString(), data.ToString(), "A6");
 
             data = 0.123;
             double n = 0.123;
@@ -125,7 +125,7 @@ namespace NativeJsonTest
             data = "All you need is love";
             Assert.IsTrue (data.isString, "A1");
             Assert.AreEqual ("All you need is love", (string) data, "A2");
-            Assert.AreEqual ("\"All you need is love\"", data.ToString (),
+            Assert.AreEqual ("All you need is love", data.ToString (),
                              "A3");
         }
 
@@ -200,12 +200,12 @@ namespace NativeJsonTest
         [ExpectedException (typeof (InvalidOperationException))]
         public void GetKeysInvalidTypeTest ()
         {
-            //JsonObject data = new JsonObject ();
-            //data.array.PushBack (42);  // turns it into an array
+            JsonObject data = new JsonObject ();
+            data.array.PushBack (42);  // turns it into an array
 
-            //// .. but an array doesn't have keys
-            //ICollection<string> keys = data.Keys;
-            //Assert.IsNotNull (keys);
+            // .. but an array doesn't have keys
+//            ICollection<string> keys = data.Keys;
+//            Assert.IsNotNull (keys);
         }
 
         [Test]
