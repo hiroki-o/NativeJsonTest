@@ -23,7 +23,7 @@ namespace NativeJsonTest
         [Test]
         public void AsArrayTest ()
         {
-            Json data = new Json ();
+            JsonObject data = new JsonObject ();
 
             JsonValueArray array = data.array;
 
@@ -97,11 +97,11 @@ namespace NativeJsonTest
         [Test]
         public void AsObjectTest ()
         {
-            Json data = new Json ();
+            JsonObject data = new JsonObject ();
 
             data.AddMember("alignment", "left");
             //data["alignment"] = "left";
-            data.AddMember("font", new Json());
+            data.AddMember("font", new JsonObject());
             data["font"].AddMember("name", "Arial");
             data["font"].AddMember("style", "italic");
             data["font"].AddMember("size", 10);
@@ -183,7 +183,7 @@ namespace NativeJsonTest
         [Test]
         public void GetKeysTest ()
         {
-            Json data = new Json ();
+            JsonObject data = new JsonObject ();
 
             data.AddMember("first", "one");
             data.AddMember("second", "two");
@@ -200,7 +200,7 @@ namespace NativeJsonTest
         [ExpectedException (typeof (InvalidOperationException))]
         public void GetKeysInvalidTypeTest ()
         {
-            //Json data = new Json ();
+            //JsonObject data = new JsonObject ();
             //data.array.PushBack (42);  // turns it into an array
 
             //// .. but an array doesn't have keys
@@ -225,7 +225,7 @@ namespace NativeJsonTest
         {
             string json = "{\"test\":null}";
 
-            Json data = new Json ();
+            JsonObject data = new JsonObject ();
             data.AddMember("test", (string)null);
 
             Assert.AreEqual (json, data.ToString ());
@@ -234,7 +234,7 @@ namespace NativeJsonTest
         [Test]
         public void PropertiesOrderTest ()
         {
-            Json data = new Json ();
+            JsonObject data = new JsonObject ();
 
             string json = "{\"first\":\"one\",\"second\":\"two\"," +
                 "\"third\":\"three\",\"fourth\":\"four\"}";

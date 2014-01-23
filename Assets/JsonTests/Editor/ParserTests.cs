@@ -226,7 +226,7 @@ namespace NativeJsonTest
                     'ip_address' : '127.0.0.1'
                 }
                 ";
-            Json json = new Json();
+			JsonObject json = new JsonObject();
             json.ParseDocument(jsondata);
 
             Assert.AreEqual("example.com", json["domain"], "A1");
