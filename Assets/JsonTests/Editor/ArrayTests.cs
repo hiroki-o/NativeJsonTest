@@ -18,6 +18,9 @@ namespace NativeJsonTest
 		[Datapoint]
 		int[] values = {1,2,333,546,589,-3236,27,844,91,12220};
 
+		[Datapoint]
+		int[] values2 = {1,2,333,546,33333,-3236,27,844,91,12220};
+
 		[Test]
 		public void ArrayIndexAccess ()
 		{
@@ -68,6 +71,21 @@ namespace NativeJsonTest
 			Assert.Catch (typeof(JsonValueException), delegate { i = v[1].intValue; } );
 			Assert.Catch (typeof(JsonValueException), delegate { i = v.array[1].intValue; } );
 
+		}
+
+		[Test]
+		public void ArrayIndexWrite ()
+		{
+			JsonObject json = new JsonObject();
+			json.ParseDocument(input);
+			
+			JsonValue v = json["myArrays"];
+
+			v[4] = 33333;
+			
+			for(int i=0; i< values2.Length; ++i) {
+				Assert.That ( v[i].intValue == values2[i] );
+			}
 		}
 	}
 }
