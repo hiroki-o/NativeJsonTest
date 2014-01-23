@@ -1,7 +1,7 @@
 #region Header
 /**
- * JsonDataTest.cs
- *   Tests for the JsonData class.
+ * JsonTest.cs
+ *   Tests for the Json class.
  *
  * The authors disclaim copyright to this source code. For more details, see
  * the COPYING file included with this distribution.
@@ -13,36 +13,37 @@ using LitJson;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
-
-namespace LitJson.Test
+namespace NativeJsonTest
 {
     [TestFixture]
-    public class JsonDataTest
+    public class JsonTest
     {
         [Test]
         public void AsArrayTest ()
         {
-            JsonData data = new JsonData ();
+            Json data = new Json ();
 
-            data.Add (1);
-            data.Add (2);
-            data.Add (3);
-            data.Add ("Launch!");
+            JsonValueArray array = data.array;
 
-            Assert.IsTrue (data.IsArray, "A1");
-            Assert.AreEqual ("[1,2,3,\"Launch!\"]", data.ToJson (), "A2");
+            array.PushBack(1);
+            array.PushBack(2);
+            array.PushBack(3);
+            array.PushBack("Launch!");
+
+            //Assert.IsTrue(array.IsArray, "A1");
+            Assert.AreEqual ("[1,2,3,\"Launch!\"]", data.ToString(), "A2");
         }
 
         [Test]
         public void AsBooleanTest ()
         {
-            JsonData data;
+            JsonValue data;
 
             data = true;
-            Assert.IsTrue (data.IsBoolean, "A1");
-            Assert.IsTrue ((bool) data, "A2");
-            Assert.AreEqual ("true", data.ToJson (), "A3");
+            Assert.IsTrue (data.isBool, "A1");
+            Assert.AreEqual ("true", data.ToString (), "A3");
 
             data = false;
             bool f = false;
@@ -53,17 +54,17 @@ namespace LitJson.Test
         [Test]
         public void AsDoubleTest ()
         {
-            JsonData data;
+            JsonValue data;
 
             data = 3e6;
-            Assert.IsTrue (data.IsDouble, "A1");
+            Assert.IsTrue (data.isDouble, "A1");
             Assert.AreEqual (3e6, (double) data, "A2");
-            Assert.AreEqual ("3000000.0", data.ToJson (), "A3");
+            Assert.AreEqual ("3000000.0", data.ToString (), "A3");
 
             data = 3.14;
-            Assert.IsTrue (data.IsDouble, "A4");
+            Assert.IsTrue (data.isDouble, "A4");
             Assert.AreEqual (3.14, (double) data, "A5");
-            Assert.AreEqual ("3.14", data.ToJson (), "A6");
+            Assert.AreEqual("3.14", data.ToString(), "A6");
 
             data = 0.123;
             double n = 0.123;
@@ -74,18 +75,18 @@ namespace LitJson.Test
         [Test]
         public void AsIntTest ()
         {
-            JsonData data;
+            JsonValue data;
 
             data = 13;
-            Assert.IsTrue (data.IsInt, "A1");
+            Assert.IsTrue (data.isInt, "A1");
             Assert.AreEqual ((int) data, 13, "A2");
-            Assert.AreEqual (data.ToJson (), "13", "A3");
+            Assert.AreEqual(data.ToString(), "13", "A3");
 
             data = -00500;
 
-            Assert.IsTrue (data.IsInt, "A4");
+            Assert.IsTrue (data.isInt, "A4");
             Assert.AreEqual ((int) data, -500, "A5");
-            Assert.AreEqual (data.ToJson (), "-500", "A6");
+            Assert.AreEqual(data.ToString(), "-500", "A6");
 
             data = 1024;
             int n = 1024;
@@ -96,41 +97,43 @@ namespace LitJson.Test
         [Test]
         public void AsObjectTest ()
         {
-            JsonData data = new JsonData ();
+            Json data = new Json ();
 
-            data["alignment"] = "left";
-            data["font"] = new JsonData ();
-            data["font"]["name"] = "Arial";
-            data["font"]["style"]  = "italic";
-            data["font"]["size"]  = 10;
-            data["font"]["color"]  = "#fff";
+            data.AddMember("alignment", "left");
+            //data["alignment"] = "left";
+            data.AddMember("font", new Json());
+            data["font"].AddMember("name", "Arial");
+            data["font"].AddMember("style", "italic");
+            data["font"].AddMember("size", 10);
+            data["font"].AddMember("color", "#fff");
 
-            Assert.IsTrue (data.IsObject, "A1");
+
+            Assert.IsTrue (data.isObject, "A1");
 
             string json = "{\"alignment\":\"left\",\"font\":{" +
                 "\"name\":\"Arial\",\"style\":\"italic\",\"size\":10," +
                 "\"color\":\"#fff\"}}";
 
-            Assert.AreEqual (json, data.ToJson (), "A2");
+            Assert.AreEqual (json, data.ToString(), "A2");
         }
 
         [Test]
         public void AsStringTest ()
         {
-            JsonData data;
+            JsonValue data;
 
             data = "All you need is love";
-            Assert.IsTrue (data.IsString, "A1");
+            Assert.IsTrue (data.isString, "A1");
             Assert.AreEqual ("All you need is love", (string) data, "A2");
-            Assert.AreEqual ("\"All you need is love\"", data.ToJson (),
+            Assert.AreEqual ("\"All you need is love\"", data.ToString (),
                              "A3");
         }
 
         [Test]
         public void EqualsTest ()
         {
-            JsonData a;
-            JsonData b;
+            JsonValue a;
+            JsonValue b;
 
             // Compare ints
             a = 7;
@@ -180,36 +183,36 @@ namespace LitJson.Test
         [Test]
         public void GetKeysTest ()
         {
-            JsonData data = new JsonData ();
+            Json data = new Json ();
 
-            data["first"]  = "one";
-            data["second"] = "two";
-            data["third"]  = "three";
-            data["fourth"] = "four";
+            data.AddMember("first", "one");
+            data.AddMember("second", "two");
+            data.AddMember("third", "three");
+            data.AddMember("fourth", "four");
 
-            Assert.AreEqual (4, data.Keys.Count, "A1");
+            //Assert.AreEqual (4, data.Count, "A1");
 
-            foreach (string k in data.Keys)
-                Assert.IsNotNull (data[k], "A2");
+            //foreach (string k in data.Keys)
+            //    Assert.IsNotNull (data[k], "A2");
         }
 
         [Test]
         [ExpectedException (typeof (InvalidOperationException))]
         public void GetKeysInvalidTypeTest ()
         {
-            JsonData data = new JsonData ();
-            data.Add (42);  // turns it into an array
+            //Json data = new Json ();
+            //data.array.PushBack (42);  // turns it into an array
 
-            // .. but an array doesn't have keys
-            ICollection<string> keys = data.Keys;
-            Assert.IsNotNull (keys);
+            //// .. but an array doesn't have keys
+            //ICollection<string> keys = data.Keys;
+            //Assert.IsNotNull (keys);
         }
 
         [Test]
         [ExpectedException (typeof (InvalidCastException))]
         public void InvalidCastTest ()
         {
-            JsonData data = 35;
+            JsonValue data = 35;
 
             string str = (string) data;
 
@@ -222,30 +225,27 @@ namespace LitJson.Test
         {
             string json = "{\"test\":null}";
 
-            JsonData data = new JsonData ();
-            data["test"] = null;
+            Json data = new Json ();
+            data.AddMember("test", (string)null);
 
-            Assert.AreEqual (json, data.ToJson ());
+            Assert.AreEqual (json, data.ToString ());
         }
 
         [Test]
         public void PropertiesOrderTest ()
         {
-            JsonData data = new JsonData ();
+            Json data = new Json ();
 
             string json = "{\"first\":\"one\",\"second\":\"two\"," +
                 "\"third\":\"three\",\"fourth\":\"four\"}";
 
-            for (int i = 0; i < 10; i++) {
-                data.Clear ();
 
-                data["first"]  = "one";
-                data["second"] = "two";
-                data["third"]  = "three";
-                data["fourth"] = "four";
-
-                Assert.AreEqual (json, data.ToJson ());
-            }
+                data.AddMember("first", "one");
+                data.AddMember("second", "two");
+                data.AddMember("third", "three");
+                data.AddMember("fourth", "four");
+                Assert.AreEqual (json, data.ToString ());
+            
         }
     }
 }
