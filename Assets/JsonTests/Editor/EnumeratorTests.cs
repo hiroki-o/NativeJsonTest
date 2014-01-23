@@ -18,7 +18,7 @@ namespace NativeJsonTest
 		[Test]
 		public void ArrayEnumeration ()
 		{
-			Json json = new Json();
+			JsonObject json = new JsonObject();
 			json.ParseDocument(input);
 			
 			int i = 0;
@@ -41,7 +41,7 @@ namespace NativeJsonTest
 		[ExpectedException(typeof(InvalidOperationException))]
 		public void ArrayModifyDuringEnumeration ()
 		{
-			Json json = new Json();
+			JsonObject json = new JsonObject();
 			json.ParseDocument(input);
 			
 			int i = 0;

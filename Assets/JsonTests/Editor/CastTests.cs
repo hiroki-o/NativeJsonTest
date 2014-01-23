@@ -37,7 +37,7 @@ namespace NativeJsonTest
 		[Test]
 		public void CastToString ()
 		{
-			Json json = new Json();
+			JsonObject json = new JsonObject();
 
 			json.AddMember("member1");
 			json["member1"].stringValue = "hello world";
@@ -48,7 +48,7 @@ namespace NativeJsonTest
 		[Test]
 		public void CastToWringType ()
 		{
-			Json json = new Json();
+			JsonObject json = new JsonObject();
 
 			json.AddMember("member1");
 
@@ -60,7 +60,7 @@ namespace NativeJsonTest
 		[Test]
 		public void CastToJsonValueFromBool ()
 		{
-			Json json = new Json();
+			JsonObject json = new JsonObject();
 			
 			json["member3"] = true;
 
@@ -75,7 +75,7 @@ namespace NativeJsonTest
 			JsonValue v3 = true;
 			JsonValue v4 = "hello world";
 
-			Json json = new Json();
+			JsonObject json = new JsonObject();
 
 			json["member1"] = 123;
 			json["member2"] = 456.789;

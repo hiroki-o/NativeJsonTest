@@ -21,7 +21,7 @@ namespace NativeJsonTest
 		[Test]
 		public void ArrayIndexAccess ()
 		{
-			Json json = new Json();
+			JsonObject json = new JsonObject();
 			json.ParseDocument(input);
 
 			int i = 0;
@@ -37,7 +37,7 @@ namespace NativeJsonTest
 		[Test]
 		public void ArrayEnumeration ()
 		{
-			Json json = new Json();
+			JsonObject json = new JsonObject();
 			json.ParseDocument(input);
 			
 			int i = 0;
@@ -59,7 +59,7 @@ namespace NativeJsonTest
 		[Test]
 		public void ArrayAccessToNotArray ()
 		{
-			Json json = new Json();
+			JsonObject json = new JsonObject();
 			json.ParseDocument(input2);
 			
 			int i = 0;

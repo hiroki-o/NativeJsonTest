@@ -36,13 +36,13 @@ public class JsonExample : MonoBehaviour
 
 	public void Parse ()
 	{
-		Json json = new Json();
+		JsonObject json = new JsonObject();
 		json.ParseDocument(testInput1);
 	}
 
 	public void ParseAndToString ()
 	{
-		Json json = new Json();
+		JsonObject json = new JsonObject();
 		json.ParseDocument(testInput1);
 
 		Debug.Log (json.ToPrettyString ());
@@ -50,7 +50,7 @@ public class JsonExample : MonoBehaviour
 
 	public void ParseModifyAndToString ()
 	{
-		Json json = new Json();
+		JsonObject json = new JsonObject();
 		json.ParseDocument(testInput1);
 
 		json.AddMember("category", "INIT");
@@ -66,7 +66,7 @@ public class JsonExample : MonoBehaviour
 
 	public void BuildFromCode ()
 	{
-		Json json = new Json();
+		JsonObject json = new JsonObject();
 
 		json.AddMember("member1", "INIT");
 		json.AddMember("member2","foobar");
@@ -79,7 +79,7 @@ public class JsonExample : MonoBehaviour
 		jv.array.PushBack(3);
 		jv.array.PushBack(4);
 
-		Json jsonObj = new Json();
+		JsonObject jsonObj = new JsonObject();
 		jsonObj.AddMember("intv", 123);
 		jsonObj.AddMember("srtv", "hoge");
 		jsonObj.AddMember("doublev", 123.456);
@@ -92,7 +92,7 @@ public class JsonExample : MonoBehaviour
 
 	public void GetString ()
 	{
-		Json json = new Json();
+		JsonObject json = new JsonObject();
 		json.ParseDocument(testInput1.text);
 
 		// test direct query
@@ -106,7 +106,7 @@ public class JsonExample : MonoBehaviour
 
 	public void IsNotOtherThanString ()
 	{
-		Json json = new Json();
+		JsonObject json = new JsonObject();
 		json.ParseDocument(testInput1);
 		
 		// test direct query

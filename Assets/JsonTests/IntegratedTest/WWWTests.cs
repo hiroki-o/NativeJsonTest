@@ -13,7 +13,7 @@ public class WWWTests : MonoBehaviour {
 		WWW www = new WWW(url);
 		yield return www;
 
-		Json json = new Json();
+		JsonObject json = new JsonObject();
 		json.ParseDocument(www.text);
 
 		getIpAddrTestSuccess = json["ip"].isString;
