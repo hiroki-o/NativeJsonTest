@@ -212,25 +212,5 @@ namespace NativeJsonTest
             json.ParseDocument(@"{""ParentFolder"": 23.111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111}");
         }
 
-        [Test]
-        public void ImportExtendedGrammarTest()
-        {
-            string jsondata = @"
-                {
-                    // The domain name
-                    ""domain"" : ""example.com"",
-
-                    /******************
-                     * The IP address *
-                     ******************/
-                    'ip_address' : '127.0.0.1'
-                }
-                ";
-			JsonObject json = new JsonObject();
-            json.ParseDocument(jsondata);
-
-            Assert.AreEqual("example.com", json["domain"], "A1");
-            Assert.AreEqual("127.0.0.1", json["ip_address"], "A2");
-        }
     }
 }

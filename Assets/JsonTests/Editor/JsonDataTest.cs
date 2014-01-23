@@ -197,18 +197,6 @@ namespace NativeJsonTest
         }
 
         [Test]
-        [ExpectedException (typeof (InvalidOperationException))]
-        public void GetKeysInvalidTypeTest ()
-        {
-            JsonObject data = new JsonObject ();
-            data.array.PushBack (42);  // turns it into an array
-
-            // .. but an array doesn't have keys
-//            ICollection<string> keys = data.Keys;
-//            Assert.IsNotNull (keys);
-        }
-
-        [Test]
         [ExpectedException (typeof (InvalidCastException))]
         public void InvalidCastTest ()
         {
