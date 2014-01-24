@@ -77,6 +77,7 @@ namespace NativeJsonTest
         {
             JsonValue data;
 
+			// int 
             data = 13;
             Assert.IsTrue (data.isInt, "A1");
             Assert.AreEqual ((int) data, 13, "A2");
@@ -92,7 +93,23 @@ namespace NativeJsonTest
             int n = 1024;
 
             Assert.AreEqual ((int) data, n, "A7");
-        }
+
+			//int64 is also int		
+			data = 13L;
+			Assert.IsTrue (data.isInt, "A1");
+			Assert.AreEqual ((int) data, 13, "A2");
+			Assert.AreEqual(data.ToString(), "13", "A3");
+			
+			data = -00500L;
+			
+			Assert.IsTrue (data.isInt, "A4");
+			Assert.AreEqual ((int) data, -500, "A5");
+			Assert.AreEqual(data.ToString(), "-500", "A6");
+			
+			data = 1024L;
+
+			Assert.AreEqual ((int) data, n, "A7");
+		}
 
         [Test]
         public void AsObjectTest ()
@@ -129,8 +146,68 @@ namespace NativeJsonTest
                              "A3");
         }
 
-        [Test]
-        public void EqualsTest ()
+		[Test]
+		public void EqualsTest ()
+		{
+			JsonObject o = new JsonObject();
+			o.AddMember("member");
+			JsonValue a = o["member"];
+			JsonValue b;
+			
+			// Compare ints
+			a.intValue = 7;
+			b = 7;
+			Assert.IsTrue (a.Equals (b), "A1");
+			
+			Assert.IsFalse (a.Equals (null), "A2");
+			
+			b = 8;
+			Assert.IsFalse (a.Equals (b), "A3");
+			
+			// Compare longs
+			a.longValue = 10L;
+			b = 10L;
+			Assert.IsTrue (a.Equals (b), "A4");
+			
+			// Compare Long and Int (the same value)
+			// NOTE:
+			//  The expected behaviour of LitJson for (10.Equals(10L)) is False
+			//  but Unity's Json will return True because that is more
+			//  expected result in natural manner
+			b = 10;
+			Assert.AreEqual (10L.Equals(10), a.Equals (b), "A5");
+			
+			// Compare Long and Long (different value)
+			b = 11L;
+			Assert.IsFalse (a.Equals (b), "A6");
+			
+			// Compare doubles
+			a.doubleValue = 78.9;
+			b = 78.9;
+			Assert.IsTrue (a.Equals (b), "A7");
+			
+			b = 78.899999;
+			Assert.IsFalse (a.Equals (b), "A8");
+			
+			// Compare booleans
+			a.boolValue = true;
+			b = true;
+			Assert.IsTrue (a.Equals (b), "A9");
+			
+			b.boolValue = false;
+			Assert.IsFalse (a.Equals (b), "A10");
+			
+			// Compare strings
+			a.stringValue = "walrus";
+			b = "walrus";
+			Assert.IsTrue (a.Equals (b), "A11");
+			
+			b = "Walrus";
+			Assert.IsFalse (a.Equals (b), "A12");
+		}
+
+		[Test]
+        public void BridgeEqualsTest ()
         {
             JsonValue a;
             JsonValue b;
@@ -150,9 +227,16 @@ namespace NativeJsonTest
             b = 10L;
             Assert.IsTrue (a.Equals (b), "A4");
 
+			// Compare Long and Int (the same value)
+			// NOTE:
+			//  The expected behaviour of LitJson for (10.Equals(10L)) is False
+			//  but Unity's Json will return True because that is more
+			//  expected result in natural manner
             b = 10;
-            Assert.IsFalse (a.Equals (b), "A5");
-            b = 11L;
+			Assert.AreEqual (10L.Equals(10), a.Equals (b), "A5");
+
+			// Compare Long and Long (different value)
+			b = 11L;
             Assert.IsFalse (a.Equals (b), "A6");
 
             // Compare doubles
