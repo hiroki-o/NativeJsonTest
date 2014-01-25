@@ -35,6 +35,11 @@ namespace NativeJsonTest
 			for(i=0; i< values.Length; ++i) {
 				Assert.That ( v[i].intValue == values[i] );
 			}
+
+			i = 0;
+			foreach(JsonValue item in v) {
+				Assert.That ( item.intValue == values[i++] );
+			}
 		}
 
 		[Test]

@@ -100,7 +100,7 @@ namespace NativeJsonTest
 		{
 			JsonObject json = new JsonObject();
             json.ParseDocument(jsonData);
-            Assert.That(json.GetValue("FolderId").isString);
+            Assert.That(json["FolderId"].isString);
 		}
 
 
