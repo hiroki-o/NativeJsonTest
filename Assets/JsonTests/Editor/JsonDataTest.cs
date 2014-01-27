@@ -127,7 +127,7 @@ namespace NativeJsonTest
             Assert.IsTrue (data.isObject, "A1");
 
 			string json = @"{""alignment"":""left"",""font"":{""name"":""Arial"",""style"":""italic"",""size"":10,""color"":""#fff""}}";
-			Debug.Log (data.ToString ());
+			//Debug.Log (data.ToString ());
 
             Assert.AreEqual (json, data.ToString(), "A2");
         }
